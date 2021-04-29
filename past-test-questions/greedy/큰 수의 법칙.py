@@ -21,11 +21,12 @@ n, m, k = map(int, input('n과 m과 k를 입력하시오 : ').split())
 
 while 1:
     data = list(map(int, input('n 만큼의 배열을 입력하시오 : ').split()))
-    if len(data) == n: break;
+    if len(data) == n:
+        break
 
 data.sort(reverse=True)
 print("가장 큰수 : ", data[0])
-print("두번째로 큰 수 : ", data[1]) 
+print("두번째로 큰 수 : ", data[1])
 
 count = int(m / (k + 1)) * k
 count += m % (k + 1)
@@ -34,3 +35,6 @@ result = data[0] * count
 result += data[1] * (m - count)
 
 print(result)
+
+# 배열을 불러오는 것과 아예 변수에 값을 저장하는 것이 저장공간 면에서 무엇이 다른지 알아볼것.
+# first = data[0], second = data[1]이라고 두고 first,second를 이용하는게 더 나은지 확인.
