@@ -1,3 +1,5 @@
+# 수정 요망
+
 def solution(s):
     n = int(len(s)/2)
     answer = 0
