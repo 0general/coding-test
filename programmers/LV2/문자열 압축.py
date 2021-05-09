@@ -1,42 +1,28 @@
-
 def solution(s):
-    answer = 0
-    min_value = len(s)
-
-    for i in range(1, len(s)//2 + 1):  # i는 묶음 단위
-        dap = ''
-        f = 0
-        n = f+i
+    n = len(s)
+    answer = n
+    for i in range(1, (n//2)+1):  # 검사 단위 i
+        j = 0
         cnt = 1
-        # 검사할 문장
-        while n < len(s):
-            temp = s[f:f+i]
-            print("비교 대상 : ", temp)
-            if n+i <= len(s):
-                b = s[n:n+i]
-                print("인덱스 위치 : ", n, "확인 대상 : ", b, "\n--------------------")
-                if temp == b:
-                    cnt += 1
-                else:
-                    if cnt == 1:
-                        dap += temp
-                        print(dap)
-                        f = n
-                    else:
-                        dap = dap + str(cnt) + temp
-                        print(dap)
-                        cnt = 1
-                        f = n
+        check = ''
+        temp = ''
+        for _ in range(n//i):  # 검사 시작
+            if temp == s[j:j+i]:
+                cnt += 1
+                j += i
             else:
-                dap += s[n:]
-                print("처음 : ", s, "종료 : ", dap)
-                break
-            n += i
-        if min_value > len(dap):
-            min_value = len(dap)
-
-    answer = min_value
+                if cnt == 1:
+                    check += temp
+                else:
+                    check = check + str(cnt) + temp
+                    cnt = 1
+                temp = s[j:j+i]
+                j += i
+        if cnt == 1:
+            check += temp
+        else:
+            check = check + str(cnt) + temp
+        if j < n:
+            check += s[j:]
+        answer = min(len(check), answer)
     return answer
-
-
-solution('aabbacc')
