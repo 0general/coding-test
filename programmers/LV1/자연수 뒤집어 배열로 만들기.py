@@ -4,6 +4,6 @@ def solution(n):
     while 10**i < n:
         a = n % (10**(i+1))
         a = int(a/(10**i))
-        anwer.append(a)
+        answer.append(a)
         i += 1
     return answer
