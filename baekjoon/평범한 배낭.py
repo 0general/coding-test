@@ -14,46 +14,19 @@ https://www.acmicpc.net/problem/12865
 입력으로 주어지는 모든 수는 정수
 
 '''
-# greedy의 유형
 
 # 준서가 버틸 수 있는 무게 K
-n, k = map(int, input('N과 K을 순서대로 입력하시오 : ').split())
-vklist = []
-
+n, k = map(int, input().split())
+mat = [[0]*(k+1) for _ in range(n+1)]
+item = [[0, 0]]
 for i in range(n):
-    a = list(map(int, input('무게와 가치를 순서대로 입력하시오 : ').split()))
-    #[w, v]
-    vklist.append(a)
+    item.append(list(map(int, input().split())))
 
-max_value = 0  # 최종 가치의 최댓값
-
-vklist.sort(key=lambda x: x[0], reverse=True)  # 무게에 따라 정렬
-
-for j in range(len(vklist)):
-    whap = 0  # 무게 합
-    vhap = 0  # 가치 합
-    check = j
-    while whap < k:
-        if check + 1 < len(vklist):
-            if whap + vklist[check][0] <= k:
-                if vklist[check][1] > vklist[check+1][1]:
-                    whap += vklist[check][0]
-                    vhap += vklist[check][1]
-                else:
-                    check += 1
-                    whap += vklist[check][0]
-                    vhap += vklist[check][1]
-            else:
-                check += 1
-        elif check + 1 == len(vklist):
-            if whap + vklist[check][0] <= k:
-                whap += vklist[check][0]
-                vhap += vklist[check][1]
-            else:
-                break
+for i in range(1, n+1):
+    for j in range(1, k+1):
+        if j >= item[i][0]:  # 지금 들고있는 물건도 넣기가 가능해질 때
+            mat[i][j] = max(mat[i-1][j], mat[i-1][j-item[i][0]]+item[i][1])
         else:
-            break
-    if vhap > max_value:
-        max_value = vhap
+            mat[i][j] = mat[i-1][j]
 
-print(max_value)
+print(mat[-1][-1])
