@@ -1,6 +1,8 @@
 '''
 https://www.acmicpc.net/problem/5052
 '''
+import sys
+# sys.stdin.readline()을 쓸 거면 뒤에 rstrip()을 붙여줘야 input()과 동일한 결과가 나온다.
 
 
 class Node(object):
@@ -27,12 +29,12 @@ class Trie:
         return True
 
 
-t = int(input())
+t = int(sys.stdin.readline().rstrip())
 for _ in range(t):
-    n = int(input())
+    n = int(sys.stdin.readline().rstrip())
     trie = Trie()
     yes = True
-    string = [input() for _ in range(n)]
+    string = list(sys.stdin.readline().rstrip() for _ in range(n))
 
     for str in string:
         if not trie.insert(str):
