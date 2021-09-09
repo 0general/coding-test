@@ -1,10 +1,13 @@
 '''
+이분 탐색 
+
+호석님 풀이 
+
 원하는 매장량 금 a, 은 b
 
 i번째 도시에 가지고 있는 매장량 금 g[i], 은 s[i], 트럭의 화물 무게 용량 w[i], 트럭의 편도 시간 t[i] 
 
 '''
-
 
 
 '''
@@ -18,7 +21,7 @@ Yes/ No 대답을 하고 싶다.
 정답이 가능한 최대범위인 r은 어떻게 계산해야 하는가
 -> 최악의 경우를 생각하면 된다. 가능한 정답의 최대치를 알아야 한다. 1번 이동하는데 엄청 오래 걸리는데 한번에 이동하는 양이 엄청 적을 때
 즉, 금 10억이 필요할 때 w = 1, t = 10^5일 때
-사실은 10^9 * 10^5 *2로 잡아야한다. 여기서는 100000000000000 그냥 이렇게 잡기는 했다. 
+사실은 10^9 * 10^5 *2 - 1로 잡아야한다. 여기서는 100000000000000 그냥 이렇게 잡기는 했다. 
 '''
 
 
@@ -29,26 +32,28 @@ Yes/ No 대답을 하고 싶다.
 운반할 수 있는 광물의 총량(cnt * w[i])과 실제로 운반을 해서 모두 가져올 수 있는 양(그 운반 동안 가져올 수 있는 매장량)을 비교한다. 
 
 '''
-def solution(a,b,g,s,w,t):
+
+
+def solution(a, b, g, s, w, t):
     n = len(g)
     l, r = 0, 100000000000000
     ans = r
     while l <= r:
         mid = (l+r)//2
 
-        tot, G,S = 0,0,0
+        tot, G, S = 0, 0, 0
         for i in range(n):
             # cnt = mid // (t[i]*2)
             # if mid % (t[i]*2) >= t[i]:
             #     cnt += 1
             cnt = (mid*2) // (t[i]*2)
             # upper := 이 트럭이 운반할 수 있는 "광물"의 최대량
-            upper = min(cnt*w[i],g[i]+s[i])
-            tot += upper #total의 upper의 총합
-            G += min(g[i], upper) #매장량과, 트럭의 능력 비교
+            upper = min(cnt*w[i], g[i]+s[i])
+            tot += upper  # total의 upper의 총합
+            G += min(g[i], upper)  # 매장량과, 트럭의 능력 비교
             S += min(s[i], upper)
 
-        if tot >= a+b and G>=a and S>=b:
+        if tot >= a+b and G >= a and S >= b:
             ans = min(ans, mid)
             r = mid - 1
         else:
