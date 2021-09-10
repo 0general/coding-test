@@ -1,23 +1,28 @@
 def solution(food_times, k):
+
+    # k보다 작거나 같은 수 중에서 마지막 인덱스를 가리키는 최대 초 수를 이분탐색으로 구하라.
+
+    l, r = 0, 100000000  # r = (2*10^13) / 200,000
     n = len(food_times)
-    data = [0]*n
-    for i, t in enumerate(food_times):
-        data[i] = [i-1, i, t, i+1]  # pre,index,time,next
-    data[0][0] = n-1
-    data[n-1][3] = 0
+    minor, check = 0, 0  # 모든 행에 빼야할 수, 마지막 인덱스를 가리킬 때의 초
+    while l <= r:
+        mid = (l+r)//2
+        last = n*mid  # mid번 돌았을 때 마지막 인덱스를 가리킬 때의 초
+        for i in food_times:
+            tmp = i - mid
+            if tmp < 0:
+                last += tmp
+        if last > k:
+            r = mid - 1
+        else:
+            l = mid + 1
+            minor, check = mid, last
+    food_times = [f-minor for f in food_times]  # 갱신
 
-    h = 0  # 현재 접시
-    for i in range(k):
-        data[h][2] -= 1
-        if data[h][2] == 0:
-            data[data[h][0]][3] = data[h][3]
-            data[data[h][3]][0] = data[h][0]
-        h = data[h][3]
-        if data[h][2] == 0:
-            return -1
+    for i in range(n):
+        if food_times[i] > 0 and check == k:
+            return i + 1
+        elif food_times[i] > 0:
+            check += 1
 
-    return data[h][1] + 1
-
-
-# u = solution([3, 1, 2], 5)
-# print(u)
+    return -1
