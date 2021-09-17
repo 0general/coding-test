@@ -20,16 +20,9 @@ def BT(idx, num, letter):  # 검사 시작 위치 idx, 모음 수 num, 반환할
     BT(idx+1, num, letter)
 
 
-# answer = sorted(list(answer))
-# for i in answer:
-#     print(i)
-
 # 비밀번호 자릿수, 문자 수
-# l, c = map(int, input().split())
-l, c = 4, 6
+l, c = map(int, input().split())
 m = "aeiou"
-# al = sorted(input().split())
-al = ['a', 't', 'c', 'i', 's', 'w']
-answer = set([])
+al = sorted(input().split())
 
 BT(0, 0, "")
