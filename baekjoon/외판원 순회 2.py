@@ -25,11 +25,18 @@ for _ in range(n):
 
 cost = int(1e9)
 
-for i in range(n):  # 시작 노드
-    visit = [False] * n
-    temp = 0  # 가격 표시
-    cnt = 0
-    visit[i] = True
-    backtracking(i, temp, cnt)
+# for i in range(n):  # 시작 노드
+#     visit = [False] * n
+#     temp = 0  # 가격 표시
+#     cnt = 0
+#     visit[i] = True
+#     backtracking(i, temp, cnt)
+
+# 순환이라 최소비용 경로의 시작 노드를 아무거나 정해도 최소값을 찾는다.
+visit = [False] * n
+temp = 0  # 가격 표시
+cnt = 0
+visit[0] = True
+backtracking(0, temp, cnt)
 
 print(cost)
