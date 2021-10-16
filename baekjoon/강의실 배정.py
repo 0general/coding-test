@@ -21,6 +21,7 @@ while h:
     # s, t = heapq.heappop(h)
     # if s < full[0]:
     #     heapq.heappush(full, t) 이렇게 쓰면 틀렸다고 한다. 왜지? 같은 로직 아닌가?
+    # 같은 로직 아니었음!!!! if문에 따라 pop을 할 수도 안 할 수도 있는 거였으니까!!
     if full[0] > h[0][0]:
         heapq.heappush(full, heapq.heappop(h)[1])
         if len(full) > ans:
