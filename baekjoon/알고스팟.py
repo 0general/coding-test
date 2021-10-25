@@ -12,6 +12,7 @@ m, n = map(int, input().split())
 q = deque()
 graph = [list(map(int, list(input().rstrip()))) for _ in range(n)]
 visited = [[False]*m for _ in range(n)]
+find = False
 
 visited[0][0] = True
 q.append((0, 0))
@@ -27,5 +28,11 @@ while q:
             else:
                 q.append((nr, nc))
             graph[nr][nc] += graph[r][c]
+            if nr == n-1 and nc == m-1:
+                find = True
+                break
+    if find:
+        break
+
 
 print(graph[n-1][m-1])
