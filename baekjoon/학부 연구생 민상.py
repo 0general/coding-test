@@ -10,13 +10,14 @@ def bfs():
     while q:
         x, y, i = q.popleft()  # 행, 열, 바람 방향
         nx, ny = x+dx[i], y+dy[i]
-        if 0 <= nx < n and 0 <= ny < m and not visit[nx][ny][i]:
+        if 0 <= nx < n and 0 <= ny < m:
+            node = graph[nx][ny]
+            if node == 9 or visit[nx][ny][i]:  # 에어컨을 만났을 때는 안 해도 됨.
+                continue
             if not visited[nx][ny]:
                 visited[nx][ny] = 1
                 cnt += 1
             visit[nx][ny][i] = True
-            visit[nx][ny][i ^ 2] = True
-            node = graph[nx][ny]
             if node == 0:
                 pass
             elif node == 1 and i % 2 == 0:
@@ -27,6 +28,10 @@ def bfs():
                 i ^= 3
             elif node == 4:
                 i ^= 1
+
+            # 나가는 경로로 들어오는 건 검사를 할 필요가 없다.
+            # 조건이 상당히 중요하다. 이로 인해서 8번의 시간 초과가 해결된다.
+            visit[nx][ny][i ^ 2] = True
             q.append((nx, ny, i))
 
 

@@ -1,5 +1,8 @@
 """
 https://www.acmicpc.net/problem/11722
+동일 코드 시간 차이
+29200  KB	68	ms Python 3 
+125284 KB	112	ms PyPy3
 """
 import sys
 

@@ -5,7 +5,7 @@ from math import sqrt
 from collections import deque
 
 
-def solution2(n):  # using queue
+def solution2(n):  # using queue - 시간 훨씬 오래 걸림
     ls = []
     q = deque()
     dp = [0]*(n+1)
@@ -25,6 +25,11 @@ def solution2(n):  # using queue
                 dp[next] = dp[now]+1
                 q.append(next)
     print(dp[n])
+
+
+solution2(int(input()))
+
+###############################################################################
 
 
 def solution(n):
@@ -47,4 +52,4 @@ def solution(n):
     print(dp[n])
 
 
-solution2(int(input()))
+solution(int(input()))

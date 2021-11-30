@@ -1,8 +1,8 @@
 """
 https://www.acmicpc.net/problem/12015
+pypy3 로 채점해야 시간 초과가 안 난다.
 """
 import sys
-
 
 input = sys.stdin.readline
 

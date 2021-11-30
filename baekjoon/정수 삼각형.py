@@ -15,7 +15,7 @@ for i in range(n):
             if j == 0:
                 arr[j] += state[0]
             elif j == i:
-                arr[j] += state[j-1]
+                arr[j] += state[-1]
             else:
                 arr[j] += max(state[j], state[j-1])
         state = arr
