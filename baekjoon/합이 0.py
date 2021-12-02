@@ -1,6 +1,6 @@
 """
 https://www.acmicpc.net/problem/3151
-pypy3 27%에서 시간초과 
+pypy3 
 """
 import sys
 
