@@ -1,3 +1,7 @@
+"""
+https://www.acmicpc.net/problem/9205
+"""
+
 from collections import deque
 import sys
 
