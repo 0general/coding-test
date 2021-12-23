@@ -9,7 +9,6 @@ input = sys.stdin.readline
 N = int(input())
 h = []
 for _ in range(N):
-    print(h)
     x = int(input())
     if x == 0:
         if len(h) == 0:
