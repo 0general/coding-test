@@ -1,27 +1,45 @@
 """
 https://www.acmicpc.net/problem/1713
 """
-import math
 import sys
 
-input = sys.stdin.readline
-# year = Ma+x = Nb+y 인 year 찾기
 
-# 연립 일차 합동식 공부해서 다시 해볼 것.
-T = int(input())
-for _ in range(T):
-    m, n, x, y = map(int, input().split())
-    last = (m*n)//math.gcd(m, n)  # LCM 최소공배수이자 마지막 해
-    if m == x and n == y:
-        print(last)
-        continue
-    i = 0
-    num = 0
-    ans = -1
-    while num < last:
-        num = m*i + x
-        if num % n == y % n:
-            ans = num
-            break
-        i += 1
-    print(ans)
+# 후보자가 이미 등록되어 있는지 확인
+def check(x, i):
+    if x in ans:
+        increase_num(x)
+    else:
+        post_photo(x, i)
+
+
+# 새로운 후보자 사진 게시
+def post_photo(x, i):
+    if len(ans) == n:
+        d = find_minimum()
+        del ans[d]
+    ans[x] = [1, i]  # 추천 수 1, i번째로 추천받음
+
+
+# 기존 후보자 추천 수 증가
+def increase_num(x):
+    ans[x][0] += 1
+
+
+# 가장 적은 수의 추천자 찾기
+def find_minimum():
+    return min(ans.keys(), key=(lambda x: ans[x]))
+
+
+input = sys.stdin.readline
+
+
+n = int(input())
+num = int(input())
+
+rec = list(map(int, input().split()))
+ans = {}
+
+for i, p in enumerate(rec):
+    check(p, i)
+
+print(*sorted(ans.keys()))
