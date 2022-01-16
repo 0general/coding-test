@@ -31,5 +31,5 @@ for num in arr:
                 s = mid + 1
         stack[ans] = num
 
-print(*stack)
+# print(*stack)
 print(n-len(stack))
