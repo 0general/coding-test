@@ -3,7 +3,7 @@ https://www.acmicpc.net/problem/2110
 """
 import sys
 
-sys.setrecursionlimit(200000)
+sys.setrecursionlimit(200010)
 
 
 def setting(dist, idx, Count):
