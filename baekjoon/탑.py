@@ -14,7 +14,7 @@ ans = []
 idx = 1
 for h in top:
     while stack:
-        if stack[-1][0] >= h:
+        if stack[-1][0] > h:  # 높이가 같으면 수신하지 못한다. <= 재채점 데이터
             break
         else:
             stack.pop()
